@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 
@@ -147,11 +149,9 @@ export default function Home() {
                     <Link
                         key={label}
                         href={href}
-                        className="group relative rounded-full px-4 py-3 text-[14px] font-semibold text-white/70 transition-colors duration-200 hover:text-white"
+                        className="rounded-full px-4 py-2 text-[13px] font-bold text-white/80 transition hover:bg-white/[0.07] hover:text-white"
                     >
                       {label}
-
-                      <span className="absolute bottom-[7px] left-1/2 h-[2px] w-0 -translate-x-1/2 rounded-full bg-[#f5c53a] transition-all duration-300 group-hover:w-5" />
                     </Link>
                 ))}
               </nav>
@@ -243,18 +243,19 @@ export default function Home() {
                             ["About", "#about"],
                             ["Reviews", "#reviews"],
                             ["Financing", "#financing"],
-                          ].map(([label, href], index) => (
-                              <SheetClose asChild key={label}>
-                                <Link
-                                    href={href}
-                                    className="group flex items-center justify-between border-b border-white/10 py-5 text-[22px] font-bold tracking-[-0.025em] text-white transition hover:text-[#f5c53a]"
-                                >
-                                  <span>{label}</span>
+                          ].map(([label, href]) => (
+                              <SheetClose
+                                  key={label}
+                                  onClick={() => {
+                                    window.location.hash = href;
+                                  }}
+                                  className="group flex w-full items-center justify-between border-b border-white/10 py-5 text-left text-[22px] font-bold tracking-[-0.025em] text-white transition hover:text-[#f5c53a]"
+                              >
+                                <span>{label}</span>
 
-                                  <span className="text-lg text-[#f5c53a] transition-transform group-hover:translate-x-1">
-                          →
-                        </span>
-                                </Link>
+                                <span className="text-lg text-[#f5c53a] transition-transform group-hover:translate-x-1">
+          →
+        </span>
                               </SheetClose>
                           ))}
                         </div>
@@ -272,17 +273,17 @@ export default function Home() {
                             (813) 606-2697
                           </a>
 
-                          <SheetClose asChild>
-                            <Link
-                                href="#estimate"
-                                className={cn(
-                                    buttonVariants(),
-                                    "mt-6 flex h-14 w-full rounded-full bg-[#f5c53a] text-[15px] font-extrabold text-[#263a7a] hover:bg-[#ffda55]"
-                                )}
-                            >
-                              Request Free Estimate
-                              <ArrowIcon />
-                            </Link>
+                          <SheetClose
+                              onClick={() => {
+                                window.location.hash = "#estimate";
+                              }}
+                              className={cn(
+                                  buttonVariants(),
+                                  "mt-6 flex h-14 w-full rounded-full bg-[#f5c53a] text-[15px] font-extrabold text-[#263a7a] hover:bg-[#ffda55]"
+                              )}
+                          >
+                            Request Free Estimate
+                            <ArrowIcon />
                           </SheetClose>
 
                           <p className="mt-4 text-center text-xs text-white/40">
